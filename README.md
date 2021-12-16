@@ -17,3 +17,7 @@ yarn install
 ```js
  yarn start
 ```
+
+4. Type y or Y.
+
+<img src="https://github.com/secufer/serufer-app/blob/main/npm.png"><br />
