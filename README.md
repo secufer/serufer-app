@@ -18,6 +18,6 @@ yarn install
  yarn start
 ```
 
-4. Type y or Y.
+4. Type y or Y to Do you want to install it globally [Y/n]?.
 
 <img src="https://github.com/secufer/serufer-app/blob/main/npm.png"><br />
