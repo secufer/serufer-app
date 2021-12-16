@@ -15,7 +15,7 @@ yarn install
 3. Run project on iOS / Android.
 
 ```js
- yarn start
+ npm start
 ```
 
 4. Type y or Y to Do you want to install it globally [Y/n]?.
