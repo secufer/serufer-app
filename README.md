@@ -7,8 +7,6 @@
 2. Install dependencies.
 
 ```js
-npm install
-// or
 yarn install
 ```
 
