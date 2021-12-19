@@ -22,13 +22,6 @@ export default function LoginScreen({ navigation }) {
   const url = "https://secufer.herokuapp.com/api/auth/login";
   var arr_error;
 
-  const startLoading = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  };
-
   const onLoginPressed = async () => {
     setLoading(true);
     const requestOptions = {
@@ -90,9 +83,14 @@ export default function LoginScreen({ navigation }) {
       <Logo />
       <Header>Welcome back.</Header>
       {loading && (
-        <ActivityIndicator visible={loading} size="large" color="#0000ff" />
+        <ActivityIndicator
+          visible={loading}
+          size="large"
+          color={theme.colors.primary}
+        />
       )}
       <TextInput
+        disabled={loading}
         label="Username"
         returnKeyType="next"
         value={phone.value}
@@ -103,6 +101,7 @@ export default function LoginScreen({ navigation }) {
         keyboardType="default"
       />
       <TextInput
+        disabled={loading}
         label="Password"
         returnKeyType="done"
         value={password.value}

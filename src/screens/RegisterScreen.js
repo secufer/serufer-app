@@ -59,7 +59,15 @@ export default function RegisterScreen({ navigation }) {
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Dropdown label="Favorite Fruit" data={data} />
+        {/* <Dropdown label="Favorite Fruit" data={data} /> */}
+        <TextInput
+          label="Name"
+          returnKeyType="next"
+          value={name.value}
+          onChangeText={(text) => setName({ value: text, error: "" })}
+          error={!!name.error}
+          errorText={name.error}
+        />
         <TextInput
           label="Name"
           returnKeyType="next"
