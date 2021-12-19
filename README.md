@@ -1,4 +1,4 @@
-<img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />
+<img src="https://github.com/secufer/serufer-app/blob/main/secufer.jpeg" width=200><br />
 # Serufer-app
 ## How to use?
 
