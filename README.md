@@ -1,6 +1,7 @@
+ ![bg](red)
 #
 <span style="color: green">
- ![bg](red)
+
  <img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app</span>
 ## How to use?
 
