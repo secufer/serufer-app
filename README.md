@@ -1,8 +1,4 @@
-_backgroundColor: "#def"
-#
-<span style="color: green">
-
- <img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app</span>
+#<img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app
 ## How to use?
 
 1. Download or clone this repo.
