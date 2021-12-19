@@ -22,7 +22,7 @@ yarn install
 
 5. Install Expo App to run the app.
 
-<img src="https://github.com/secufer/serufer-app/blob/main/expo.jpeg"><br />
+<img src="https://github.com/secufer/serufer-app/blob/main/expo.jpeg" width=500><br />
 First, make sure that your phone is connected to the same WiFi network as your computer. This is really important!
 
 Next you'll need to install the Expo client on your phone. This is the native shell Expo provides that lets you get started without having the build the native app yourself. Go to the App Store or Play store, search for "Expo" and install it. You will also have to create an Expo account if you don't already have one (don't worry - it's free!).
