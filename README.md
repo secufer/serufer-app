@@ -1,4 +1,5 @@
-#<img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app
+<img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />
+# Serufer-app
 ## How to use?
 
 1. Download or clone this repo.
