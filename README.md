@@ -1,4 +1,7 @@
-#<span style="color: green"> <img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app</span>
+#
+<span style="color: green">
+ ![bg](red)
+ <img src="https://github.com/secufer/serufer-app/blob/main/secufer_logo.png" width=200><br />serufer-app</span>
 ## How to use?
 
 1. Download or clone this repo.
