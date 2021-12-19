@@ -52,7 +52,6 @@ export default function LoginScreen({ navigation }) {
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
       });
-      return;
     }
     if (!!data["phone_number"] == true) {
       arr_error = data["phone_number"];
@@ -60,7 +59,6 @@ export default function LoginScreen({ navigation }) {
         console.log(ero);
         setPhone({ ...phone, error: ero });
       });
-      return;
     }
     if (!!data["password"] == true) {
       arr_error = data["password"];
@@ -68,13 +66,15 @@ export default function LoginScreen({ navigation }) {
         console.log(ero);
         setPassword({ ...password, error: ero });
       });
+    }
+    if (!!data["token"] == true) {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Dashboard" }],
+      });
+    } else {
       return;
     }
-
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Dashboard" }],
-    });
   };
 
   return (
