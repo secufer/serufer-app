@@ -12,7 +12,7 @@ import { Text } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
-import Header from "../components/Header";
+import Header from "../components/Head";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";

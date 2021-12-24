@@ -4,7 +4,7 @@ import { Image, StyleSheet } from "react-native";
 export default function Logo() {
   return (
     <Image
-      source={require("../assets/secufer_logo.png")}
+      source={require("../assets/images/Hadder.png")}
       style={styles.image}
     />
   );
@@ -12,8 +12,7 @@ export default function Logo() {
 
 const styles = StyleSheet.create({
   image: {
-    width: 200,
-    height: 110,
-    marginBottom: 4,
+    width: "100%",
+    height: 220,
   },
 });
