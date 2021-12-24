@@ -1,7 +1,7 @@
 import React from "react";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
-import Header from "../components/Header";
+import Head from "../components/Head";
 import Button from "../components/Button";
 import Paragraph from "../components/Paragraph";
 
@@ -9,7 +9,7 @@ export default function StartScreen({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Creating Trust In Your Transactions</Header>
+      <Head>Creating Trust In Your Transactions</Head>
       {/* <Paragraph>
         Secufer is a system which enables you to safely transact while buying
         and selling online. Join us in our mission

@@ -9,7 +9,7 @@ import {
 import { Text } from "react-native-paper";
 import Background from "../components/Background";
 import Logo from "../components/Logo";
-import Header from "../components/Header";
+import Head from "../components/Head";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";
@@ -39,6 +39,10 @@ export default function LoginScreen({ navigation }) {
 
     setLoading(!!data ? false : true);
     // var commanError = !!data["non_field_errors"] ? true : false;
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: "Dashboard" }],
+    // });
     if (!!data["non_field_errors"] == true) {
       arr_error = data["non_field_errors"];
       arr_error.map((ero) => {
@@ -81,7 +85,7 @@ export default function LoginScreen({ navigation }) {
     <Background>
       <BackButton goBack={navigation.goBack} />
       <Logo />
-      <Header>Welcome back.</Header>
+      <Head>Welcome back.</Head>
       {loading && (
         <ActivityIndicator
           visible={loading}
