@@ -45,8 +45,18 @@ const OnboardingScreen = ({ navigation }) => {
       NextButtonComponent={Next}
       DoneButtonComponent={Done}
       DotComponent={Dots}
-      onSkip={() => navigation.replace("Dashboard")}
-      onDone={() => navigation.navigate("StartScreen")}
+      onSkip={() =>
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "StartScreen" }],
+        })
+      }
+      onDone={() =>
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "StartScreen" }],
+        })
+      }
       pages={[
         {
           backgroundColor: "#a6e4d0",

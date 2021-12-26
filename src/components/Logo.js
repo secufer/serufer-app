@@ -13,6 +13,7 @@ export default function Logo() {
 const styles = StyleSheet.create({
   image: {
     width: "100%",
-    height: 220,
+    // height: 220,
+    // paddingVertical: 1,
   },
 });

@@ -38,11 +38,6 @@ export default function LoginScreen({ navigation }) {
     console.log(data);
 
     setLoading(!!data ? false : true);
-    // var commanError = !!data["non_field_errors"] ? true : false;
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: "Dashboard" }],
-    // });
     if (!!data["non_field_errors"] == true) {
       arr_error = data["non_field_errors"];
       arr_error.map((ero) => {
@@ -82,9 +77,13 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <Background>
+    <View
+      style={[
+        theme.container,
+        { justifyContent: "center", alignItems: "center" },
+      ]}
+    >
       <BackButton goBack={navigation.goBack} />
-      <Logo />
       <Head>Welcome back.</Head>
       {loading && (
         <ActivityIndicator
@@ -130,7 +129,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
-    </Background>
+    </View>
   );
 }
 

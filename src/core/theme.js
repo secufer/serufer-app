@@ -67,7 +67,14 @@ export const theme = {
     fontSize: 13,
     lineHeight: 15,
     paddingHorizontal: 5,
-    // height: 30,
     width: "100%",
+  },
+  footer: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    backgroundColor: "transparent",
   },
 };
