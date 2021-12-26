@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
-import { View } from "react-native";
 
 export default function Head(props) {
   return <Text style={styles.header} {...props} />;
@@ -15,7 +14,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "100%",
     fontSize: 36,
-    color: "#000000",
+    color: "#615B5B",
     fontWeight: "bold",
     fontFamily: "Roboto",
     fontStyle: "normal",

@@ -24,11 +24,13 @@ export default function App() {
           screenOptions={{
             headerShown: true,
             headerStyle: {
-              // backgroundColor: "#f4511e",
               height: 120,
             },
             headerTitleShown: false,
             headerTintColor: null,
+            headerBackground: (props) => <Logo {...props} />,
+            headerBackAccessibilityLabel: false,
+            headerLeft: () => null,
           }}
         >
           <Stack.Screen
@@ -38,24 +40,20 @@ export default function App() {
           />
           <Stack.Screen
             name="StartScreen"
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
             component={StartScreen}
           />
           <Stack.Screen
             name="LoginScreen"
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
             component={LoginScreen}
           />
           <Stack.Screen
             name="RegisterScreen"
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
             component={RegisterScreen}
           />
-          <Stack.Screen
-            name="Dashboard"
-            component={Dashboard}
-            options={{ headerBackground: (props) => <Logo {...props} /> }}
-          />
+          <Stack.Screen name="Dashboard" component={Dashboard} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
