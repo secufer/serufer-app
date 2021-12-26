@@ -7,69 +7,24 @@ import {
   StyleSheet,
   FlatList,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+// import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Logo from "../components/Logo";
+// import Logo from "../components/Logo";
 import Head from "../components/Head";
+// import HeaderTitle from "../components/HeaderTitle";
 import Paragraph from "../components/Paragraph";
 import Button from "../components/Button";
 import { theme } from "../core/theme";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+// import { AntDesign } from "@expo/vector-icons";
+import MyTransaction from "./MyTransaction";
 
 export default function Dashboard({ navigation }) {
-  function HomeScreen() {
-    const DATA = [
-      {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "First Item",
-      },
-      {
-        id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-        title: "Second Item",
-      },
-      {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-      },
-    ];
-
-    const Item = ({ title, id }) => (
-      <View
-        style={{
-          flex: 1,
-          paddingVertical: 6,
-          paddingHorizontal: 6,
-          flexDirection: "row",
-          width: "100%",
-          height: 82,
-          background: "#FEFFFF",
-        }}
-      >
-        <Text style={styles.title}>{title} + </Text>
-        <Text>{id}</Text>
-      </View>
-    );
-    const renderItem = ({ item }) => <Item title={item.title} id={item.id} />;
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <View style={styles.container}>
-          <Head>My Transaction</Head>
-          <View style={styles.separator} />
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
-      </View>
-    );
-  }
-
   function SettingsScreen() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <View style={styles.container}>
-          <Head>Settings!</Head>
+        <View style={theme.container}>
+          <Head>Sy</Head>
           <Paragraph>
             Your amazing app starts here. Open you favorite code editor and
             start editing this project.
@@ -92,20 +47,24 @@ export default function Dashboard({ navigation }) {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarStyle: { height: 81 },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Home") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
+          if (route.name === "Setting") {
+            iconName = focused ? "add-circle" : "add-circle-outline";
           } else if (route.name === "Settings") {
-            iconName = focused ? "ios-list-circle" : "ios-list";
+            iconName = focused ? "person-add" : "person-add-outline";
+            return <Ionicons name={iconName} size={43} color={color} />;
+          } else if (route.name === "Home") {
+            iconName = focused ? "home" : "home-outline";
+            return <Ionicons name={iconName} size={43} color={color} />;
+          } else if (route.name === "ome") {
+            iconName = focused ? "user-circle" : "user-circle-o";
+            return <FontAwesome name={iconName} size={43} color={color} />;
           }
-
-          // You can return any component that you like here!
           return <Ionicons name={iconName} size={52} color={color} />;
         },
         tabBarBackground: () => (
@@ -114,14 +73,14 @@ export default function Dashboard({ navigation }) {
             source={require("../assets/images/Bottom_BG_img.png")}
           />
         ),
-        tabBarShowLabel:false,
-        tabBarActiveTintColor: "white",
-        tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "rgba(109, 102, 102, 100)",
+        tabBarInactiveTintColor: "white",
       })}
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Setting"
+        component={MyTransaction}
         options={{ headerShown: false }}
       />
       <Tab.Screen
@@ -129,17 +88,17 @@ export default function Dashboard({ navigation }) {
         component={SettingsScreen}
         options={{ headerShown: false }}
       />
+
+      <Tab.Screen
+        name="Home"
+        component={MyTransaction}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="ome"
+        component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "#737373",
-    borderBottomWidth: 2,
-  },
-});
