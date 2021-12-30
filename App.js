@@ -2,8 +2,10 @@ import React from "react";
 import { Provider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Image } from "react-native";
+// import { Image } from "react-native";
 import { theme } from "./src/core/theme";
+import { navigationRef } from "./src/functions/RootNavigation";
+import logout from "./src/functions/Logout";
 import {
   StartScreen,
   LoginScreen,
@@ -12,13 +14,15 @@ import {
   OnboardingScreen,
 } from "./src/screens";
 import Logo from "./src/components/Logo";
+import { TouchableOpacity } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <Provider theme={theme}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
           initialRouteName="OnboardingScreen"
           screenOptions={{
@@ -31,6 +35,11 @@ export default function App() {
             headerBackground: (props) => <Logo {...props} />,
             headerBackAccessibilityLabel: false,
             headerLeft: () => null,
+            headerRight: () => (
+              <TouchableOpacity onPress={logout} style={theme.headerContainer}>
+                <AntDesign name="logout" size={30} color="#ffca18" />
+              </TouchableOpacity>
+            ),
           }}
         >
           <Stack.Screen
@@ -40,17 +49,17 @@ export default function App() {
           />
           <Stack.Screen
             name="StartScreen"
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerRight: () => null }}
             component={StartScreen}
           />
           <Stack.Screen
             name="LoginScreen"
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerRight: () => null }}
             component={LoginScreen}
           />
           <Stack.Screen
             name="RegisterScreen"
-            options={{ headerShown: true }}
+            options={{ headerShown: true, headerRight: () => null }}
             component={RegisterScreen}
           />
           <Stack.Screen name="Dashboard" component={Dashboard} />

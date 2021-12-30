@@ -3,13 +3,13 @@ import { StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
 export default function Head(props) {
-  return <Text style={styles.header} {...props} />;
+  return <Text style={[styles.header]} {...props} />;
 }
 
 const styles = StyleSheet.create({
   container: {},
   header: {
-    paddingTop: 30,
+    paddingTop: 35,
     paddingBottom: 10,
     textAlign: "center",
     width: "100%",

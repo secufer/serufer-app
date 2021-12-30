@@ -1,5 +1,5 @@
 import { DefaultTheme } from "react-native-paper";
-
+import { getStatusBarHeight } from "react-native-status-bar-height";
 export const theme = {
   ...DefaultTheme,
   colors: {
@@ -13,6 +13,12 @@ export const theme = {
   container: {
     flex: 1,
     width: "100%",
+  },
+  headerContainer: {
+    position: "absolute",
+    top: getStatusBarHeight(),
+    right: 10,
+    zIndex: 10,
   },
   separator: {
     marginBottom: 8,
