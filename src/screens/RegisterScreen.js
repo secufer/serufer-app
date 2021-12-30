@@ -10,16 +10,11 @@ import {
 import CheckBox from "expo-checkbox";
 import { Text } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
-import Header from "../components/Head";
+import Head from "../components/Head";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
-// import { emailValidator } from "../helpers/emailValidator";
-// import { passwordValidator } from "../helpers/passwordValidator";
-// import { fNameValidator } from "../helpers/nameValidator";
 
 export default function RegisterScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
@@ -34,16 +29,11 @@ export default function RegisterScreen({ navigation }) {
     error: "",
   });
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+
   var errorText = null;
   const url = "http://secufer.herokuapp.com/api/auth/register";
   var arr_error;
-  var no_error = true;
-
   const onSignUpPressed = async () => {
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: "Dashboard" }],
-    // });
     setLoading(true);
     no_error = true;
 
@@ -117,9 +107,14 @@ export default function RegisterScreen({ navigation }) {
   };
 
   return (
-    <Background>
+    <View
+      style={[
+        theme.container,
+        { justifyContent: "center", alignItems: "center" },
+      ]}
+    >
       <BackButton goBack={navigation.goBack} />
-      <Header>Create Account</Header>
+      <Head>Create Account</Head>
       {loading && (
         <ActivityIndicator
           visible={loading}
@@ -130,19 +125,20 @@ export default function RegisterScreen({ navigation }) {
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
+          marginHorizontal: 10,
         }}
-        style={{
-          width: "100%",
-        }}
+        style={{ width: "100%" }}
         showsVerticalScrollIndicator={false}
       >
         <View
           style={{
             backgroundColor: "#fff",
             borderWidth: 1,
+            borderColor: "#04ACF3",
             paddingVertical: 5,
+            paddingHorizontal: 5,
             width: "100%",
-            borderRadius: 15,
+            borderRadius: 5,
           }}
         >
           <Picker
@@ -152,10 +148,10 @@ export default function RegisterScreen({ navigation }) {
             style={styles.picker}
           >
             <Picker.Item label="I am * " value="Unknown" />
-            {/* <Picker.Item
+            <Picker.Item
               label="Freelancer/Service Provider"
-              value="Freelancer/ServiceProvider"
-            /> */}
+              value="Service_Provider"
+            />
             <Picker.Item label="Client" value="Client" />
             <Picker.Item label="Buyer (For Shopping)" value="Buyer" />
             <Picker.Item label="Seller (For Shopping)" value="Seller" />
@@ -264,7 +260,8 @@ export default function RegisterScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </Background>
+      {/* <Footer></Footer> */}
+    </View>
   );
 }
 

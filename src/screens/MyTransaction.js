@@ -1,23 +1,12 @@
 import React from "react";
-import {
-  Text,
-  Image,
-  View,
-  // ImageBackground,
-  // themeheet,
-  FlatList,
-} from "react-native";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import Logo from "../components/Logo";
+import { Text, View, FlatList } from "react-native";
+
 import Head from "../components/Head";
-// import HeaderTitle from "../components/HeaderTitle";
-// import Paragraph from "../components/Paragraph";
-// import Button from "../components/Button";
+
 import { theme } from "../core/theme";
-// import Ionicons from "@expo/vector-icons/Ionicons";
+
 import { AntDesign } from "@expo/vector-icons";
-// import MyTransaction from "./MyTransaction";
+
 export default function MyTransaction() {
   const DATA = [
     {

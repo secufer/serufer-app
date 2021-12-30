@@ -3,7 +3,7 @@ import Background from "../components/Background";
 import Logo from "../components/Logo";
 import Head from "../components/Head";
 import Button from "../components/Button";
-import { View, Text, ImageBackground } from "react-native";
+import { View } from "react-native";
 import { theme } from "../core/theme";
 import Footer from "../components/Footer";
 
@@ -15,7 +15,6 @@ export default function StartScreen({ navigation }) {
         { justifyContent: "center", alignItems: "center" },
       ]}
     >
-      {/* <Logo /> */}
       <Head>Creating Trust In Your Transactions</Head>
       <Button
         mode="contained"

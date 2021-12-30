@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as SecureStore from "expo-secure-store";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -7,20 +8,53 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { Text } from "react-native-paper";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
 import Head from "../components/Head";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
+import Footer from "../components/Footer";
+import { TextInput as input } from "react-native-paper";
 
 export default function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [preLogTest, setPreLogTest] = useState(false);
   const url = "https://secufer.herokuapp.com/api/auth/login";
   var arr_error;
+  useEffect(() => {
+    checkUserStatus();
+  }, []);
+
+  useEffect(() => {
+    if (preLogTest) {
+      onLoginPressed();
+    }
+  }, []);
+  async function save(key, value) {
+    await SecureStore.setItemAsync(key, value);
+  }
+
+  const checkUserStatus = async () => {
+    try {
+      const phoneValue = await SecureStore.getItemAsync("phone");
+      const passwordValue = await SecureStore.getItemAsync("password");
+
+      if (phoneValue && passwordValue) {
+        setPhone({ value: phoneValue, error: "" });
+        setPassword({ value: passwordValue, error: "" });
+        // onLoginPressed();
+        setPreLogTest(true);
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log("Keychain couldn't be accessed!", error);
+      setLoading(false);
+    }
+  };
 
   const onLoginPressed = async () => {
     setLoading(true);
@@ -67,6 +101,9 @@ export default function LoginScreen({ navigation }) {
       });
     }
     if (!!data["token"] == true) {
+      // await Keychain.setGenericPassword(phone.value, password.value);
+      save("phone", phone.value);
+      save("password", password.value);
       navigation.reset({
         index: 0,
         routes: [{ name: "Dashboard" }],
@@ -80,11 +117,15 @@ export default function LoginScreen({ navigation }) {
     <View
       style={[
         theme.container,
-        { justifyContent: "center", alignItems: "center" },
+        {
+          justifyContent: "center",
+          alignItems: "center",
+          alignContent: "center",
+        },
       ]}
     >
       <BackButton goBack={navigation.goBack} />
-      <Head>Welcome back.</Head>
+      <Head>Welcome Back!!</Head>
       {loading && (
         <ActivityIndicator
           visible={loading}
@@ -111,7 +152,17 @@ export default function LoginScreen({ navigation }) {
         onChangeText={(text) => setPassword({ value: text, error: "" })}
         error={!!password.error}
         errorText={password.error}
-        secureTextEntry
+        secureTextEntry={secureTextEntry}
+        right={
+          <input.Icon
+            name={secureTextEntry ? "eye-off-outline" : "eye"}
+            color={"#04ACF3"}
+            onPress={() => {
+              setSecureTextEntry(!secureTextEntry);
+              return false;
+            }}
+          />
+        }
       />
       {/* <View style={styles.forgotPassword}>
         <TouchableOpacity
@@ -129,6 +180,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
+      <Footer></Footer>
     </View>
   );
 }
