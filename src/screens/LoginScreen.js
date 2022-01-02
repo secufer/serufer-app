@@ -11,42 +11,47 @@ import { Text } from "react-native-paper";
 import Head from "../components/Head";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
+import { TextInput as input } from "react-native-paper";
 import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
 import Footer from "../components/Footer";
-import { TextInput as input } from "react-native-paper";
-
+import save from "../functions/StoreUser";
 export default function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [phone, setPhone] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [secureTextEntry, setSecureTextEntry] = useState(true);
-  const [preLogTest, setPreLogTest] = useState(false);
   const url = "https://secufer.herokuapp.com/api/auth/login";
   var arr_error;
   useEffect(() => {
     checkUserStatus();
   }, []);
 
-  useEffect(() => {
-    if (preLogTest) {
-      onLoginPressed();
-    }
-  }, []);
-  async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-  }
-
   const checkUserStatus = async () => {
     try {
-      const phoneValue = await SecureStore.getItemAsync("phone");
-      const passwordValue = await SecureStore.getItemAsync("password");
-
-      if (phoneValue && passwordValue) {
-        setPhone({ value: phoneValue, error: "" });
-        setPassword({ value: passwordValue, error: "" });
-        // onLoginPressed();
-        setPreLogTest(true);
+      const token = await SecureStore.getItemAsync("token");
+      if (token) {
+        setLoading(true);
+        const userRequest = {
+          method: "GET",
+          headers: { Authorization: "Token " + token },
+        };
+        const user = await fetch(
+          "http://secufer.herokuapp.com/api/auth/user",
+          userRequest
+        );
+        const userData = await user.json();
+        if (!!userData["detail"] == true) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+          save("User", JSON.stringify(userData));
+          // StoreUser(userData);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Dashboard" }],
+          });
+        }
       } else {
         setLoading(false);
       }
@@ -68,9 +73,6 @@ export default function LoginScreen({ navigation }) {
     };
     const response = await fetch(url, requestOptions);
     const data = await response.json();
-
-    console.log(data);
-
     setLoading(!!data ? false : true);
     if (!!data["non_field_errors"] == true) {
       arr_error = data["non_field_errors"];
@@ -101,9 +103,8 @@ export default function LoginScreen({ navigation }) {
       });
     }
     if (!!data["token"] == true) {
-      // await Keychain.setGenericPassword(phone.value, password.value);
-      save("phone", phone.value);
-      save("password", password.value);
+      save("token", data["token"]);
+      save("User", JSON.stringify(data));
       navigation.reset({
         index: 0,
         routes: [{ name: "Dashboard" }],
@@ -180,7 +181,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </View>
   );
 }

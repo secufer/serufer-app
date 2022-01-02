@@ -48,7 +48,7 @@ const OnboardingScreen = ({ navigation }) => {
       onSkip={() =>
         navigation.reset({
           index: 0,
-          routes: [{ name: "StartScreen" }],
+          routes: [{ name: "Dashboard" }],
         })
       }
       onDone={() =>
@@ -59,19 +59,19 @@ const OnboardingScreen = ({ navigation }) => {
       }
       pages={[
         {
-          backgroundColor: "#a6e4d0",
+          backgroundColor: "#04ACF3",
           image: <Image source={require("../assets/onboarding-img1.png")} />,
           title: "Connect to the World",
           subtitle: "A New Way To Connect With The World",
         },
         {
-          backgroundColor: "#fdeb93",
+          backgroundColor: "#1ABC6E",
           image: <Image source={require("../assets/onboarding-img2.png")} />,
           title: "Share Your Favorites",
           subtitle: "Share Your Thoughts With Similar Kind of People",
         },
         {
-          backgroundColor: "#e9bcbe",
+          backgroundColor: "#04ACF3",
           image: <Image source={require("../assets/onboarding-img3.png")} />,
           title: "Become The Star",
           subtitle: "Let The Spot Light Capture You",
