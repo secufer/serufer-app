@@ -15,8 +15,7 @@ export default function logout() {
       onPress: async () => {
         try {
           await SecureStore.deleteItemAsync("token");
-          await SecureStore.deleteItemAsync("phone");
-          await SecureStore.deleteItemAsync("password");
+          await SecureStore.deleteItemAsync("User");
           RootNavigation.navigate("StartScreen");
         } catch (err) {
           console.log("OK Pressed" + " " + err);

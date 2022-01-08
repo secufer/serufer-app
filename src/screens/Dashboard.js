@@ -27,7 +27,7 @@ export default function Dashboard({ navigation }) {
             iconName = focused ? "home" : "home-outline";
             return <Ionicons name={iconName} size={43} color={color} />;
           } else if (route.name === "UserProfile") {
-            iconName = focused ? "user-circle" : "user-circle-o";
+            iconName = focused ? "user-circle-o" : "user-circle";
             return <FontAwesome name={iconName} size={43} color={color} />;
           }
           return <Ionicons name={iconName} size={52} color={color} />;
@@ -41,7 +41,6 @@ export default function Dashboard({ navigation }) {
         tabBarShowLabel: false,
         tabBarActiveTintColor: "#ffca18",
         tabBarInactiveTintColor: "white",
-        
       })}
     >
       <Tab.Screen

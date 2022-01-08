@@ -45,6 +45,7 @@ export default function LoginScreen({ navigation }) {
           setLoading(false);
         } else {
           setLoading(false);
+          console.log(userData);
           save("User", JSON.stringify(userData));
           // StoreUser(userData);
           navigation.reset({
@@ -104,7 +105,7 @@ export default function LoginScreen({ navigation }) {
     }
     if (!!data["token"] == true) {
       save("token", data["token"]);
-      save("User", JSON.stringify(data));
+      save("User", JSON.stringify(data["user"]));
       navigation.reset({
         index: 0,
         routes: [{ name: "Dashboard" }],
@@ -125,7 +126,9 @@ export default function LoginScreen({ navigation }) {
         },
       ]}
     >
-      <BackButton goBack={navigation.goBack} />
+      {!loading && <BackButton goBack={navigation.goBack} />}
+      {/* <BackButton goBack={navigation.goBack} />
+       */}
       <Head>Welcome Back!!</Head>
       {loading && (
         <ActivityIndicator
@@ -156,6 +159,7 @@ export default function LoginScreen({ navigation }) {
         secureTextEntry={secureTextEntry}
         right={
           <input.Icon
+            disabled={loading}
             name={secureTextEntry ? "eye-off-outline" : "eye"}
             color={"#04ACF3"}
             onPress={() => {
