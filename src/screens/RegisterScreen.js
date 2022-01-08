@@ -15,7 +15,8 @@ import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
-
+import save from "../functions/StoreUser";
+import { TextInput as input } from "react-native-paper";
 export default function RegisterScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState("Unknown");
@@ -29,14 +30,12 @@ export default function RegisterScreen({ navigation }) {
     error: "",
   });
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
   var errorText = null;
   const url = "http://secufer.herokuapp.com/api/auth/register";
   var arr_error;
   const onSignUpPressed = async () => {
     setLoading(true);
-    no_error = true;
-
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,7 +69,6 @@ export default function RegisterScreen({ navigation }) {
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
       });
-      no_error = false;
     }
     if (!!data["phone_number"] == true) {
       arr_error = data["phone_number"];
@@ -78,7 +76,6 @@ export default function RegisterScreen({ navigation }) {
         console.log(ero);
         setPhone({ ...phone, error: ero });
       });
-      no_error = false;
     }
     if (!!data["email"] == true) {
       arr_error = data["email"];
@@ -86,7 +83,6 @@ export default function RegisterScreen({ navigation }) {
         console.log(ero);
         setEmail({ ...email, error: ero });
       });
-      no_error = false;
     }
     if (!!data["password"] == true) {
       arr_error = data["password"];
@@ -94,9 +90,10 @@ export default function RegisterScreen({ navigation }) {
         console.log(ero);
         setPassword({ ...password, error: ero });
       });
-      no_error = false;
     }
     if (!!data["token"] == true) {
+      save("token", data["token"]);
+      save("User", JSON.stringify(data["user"]));
       navigation.reset({
         index: 0,
         routes: [{ name: "Dashboard" }],
@@ -201,7 +198,18 @@ export default function RegisterScreen({ navigation }) {
           onChangeText={(text) => setPassword({ value: text, error: "" })}
           error={!!password.error}
           errorText={password.error}
-          secureTextEntry
+          secureTextEntry={secureTextEntry}
+          right={
+            <input.Icon
+              disabled={loading}
+              name={secureTextEntry ? "eye-off-outline" : "eye"}
+              color={"#04ACF3"}
+              onPress={() => {
+                setSecureTextEntry(!secureTextEntry);
+                return false;
+              }}
+            />
+          }
         />
         <TextInput
           label="Confirm Password * "
@@ -287,7 +295,7 @@ const styles = StyleSheet.create({
     width: "97%",
     fontSize: 13,
     color: theme.colors.secondary,
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#FFFFFF",
   },
   row: {
     flexDirection: "row",
