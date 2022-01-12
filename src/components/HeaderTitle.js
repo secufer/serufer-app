@@ -19,11 +19,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderBottomWidth: 4,
     borderBottomColor: "rgba(109, 102, 102, 100)",
-    // shadowColor: "rgba(109, 102, 102, 105)",
-    // shadowOffset: { width: 1, height: 80 },
-    // shadowRadius: 5,
-    // shadowOpacity: 100,
-    // elevation: 5,
   },
   header: {
     fontSize: 36,
