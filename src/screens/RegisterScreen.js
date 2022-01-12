@@ -55,6 +55,7 @@ export default function RegisterScreen({ navigation }) {
     console.log(data);
 
     setLoading(!!data ? false : true);
+    
 
     if (!!data["non_field_errors"] == true) {
       arr_error = data["non_field_errors"];

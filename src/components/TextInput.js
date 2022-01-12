@@ -24,10 +24,10 @@ export default function TextInput({ errorText, description, ...props }) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: 301,
     marginVertical: 12,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     alignContent: "center",
   },
   input: {
@@ -37,11 +37,14 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 13,
     color: theme.colors.secondary,
+    textAlign: "left",
     paddingTop: 8,
   },
   error: {
     fontSize: 13,
     color: theme.colors.error,
     paddingTop: 8,
+    textAlign: "left",
+    paddingHorizontal: 5,
   },
 });
