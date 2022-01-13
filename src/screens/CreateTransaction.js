@@ -11,15 +11,57 @@ import { Button as PaperButton } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
 import Head from "../components/Head";
 import TextInput from "../components/TextInput";
-import CheckBox from "expo-checkbox";
+// import CheckBox from "expo-checkbox";
 import Button from "../components/Button";
 import { Text } from "react-native-paper";
 import GetUser from "../functions/GetUser";
 import { theme } from "../core/theme";
-import { RadioButton } from "react-native-paper";
+import * as Clipboard from "expo-clipboard";
+import { RadioButton, Paragraph, Dialog, Portal } from "react-native-paper";
 
 export default function CreateTransaction({ navigation }) {
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const showDialog = () => setVisible(true);
+
+  const hideDialog = () => {
+    Clipboard.setString(
+      "https://secufer.herokuapp.com/api/transactions/shopping/?form_pk=" +
+        confirmData["form_pk"]
+    );
+    setUserType([]);
+    setUser("");
+    setFName("");
+    setLName("");
+    setEmail("");
+    setPhone("");
+    setCommission("Buyer");
+    setService_details({
+      value: "",
+      error: "",
+    });
+    setAmount({
+      value: "",
+      error: "",
+    });
+    setCpty_company({
+      value: "",
+      error: "",
+    });
+    setCpty_phone({
+      value: "",
+      error: "",
+    });
+    // setNotBuyer(false);
+    setFirstForm(false);
+    setConfirmForm(false);
+    setCofirmData(null);
+    arr_error = "";
+    fillUserData();
+    navigation.navigate("CreateTransaction");
+    setVisible(false);
+  };
   const [user_type, setUserType] = useState([]);
   const [user, setUser] = useState("");
   const [fName, setFName] = useState("");
@@ -43,7 +85,7 @@ export default function CreateTransaction({ navigation }) {
     value: "",
     error: "",
   });
-  const [notBuyer, setNotBuyer] = useState(true);
+  const [notBuyer, setNotBuyer] = useState(false);
   const [firstForm, setFirstForm] = useState(false);
   const [confirmForm, setConfirmForm] = useState(false);
   const [confirmData, setCofirmData] = useState(null);
@@ -52,10 +94,6 @@ export default function CreateTransaction({ navigation }) {
   var arr_error;
   const fillUserData = async () => {
     var userObj = await GetUser();
-    // const userObj = user["user"];
-    // if (userObj["user"]) {
-    //   userObj = userObj["user"];
-    // }
     if (
       userObj["user_type"].includes("Client") ||
       userObj["user_type"].includes("Seller")
@@ -73,7 +111,6 @@ export default function CreateTransaction({ navigation }) {
   useEffect(() => {
     fillUserData();
   }, []);
-  var errorText = null;
 
   async function onNextTransactionPress() {
     setLoading(true);
@@ -194,7 +231,6 @@ export default function CreateTransaction({ navigation }) {
             </Text>
             <Button
               mode="contained"
-              onPress={onNextTransactionPress}
               style={{ marginTop: 24 }}
               onPress={() => {
                 navigation.navigate("JoinTransaction");
@@ -434,20 +470,20 @@ export default function CreateTransaction({ navigation }) {
                     Product / Service Details
                   </Text>
                   <Text style={[styles.confirmValue]}>
-                    {/* {confirmData["service_details"]} */}
+                    {confirmData["service_details"]}
                   </Text>
                   <View style={theme.separator} />
 
                   <Text style={[styles.confirmTitle]}>Commission</Text>
                   <Text style={[styles.confirmValue]}>
-                    {/* {confirmData["commission"]} */}
-                    {/* {"Currently Free"} */}
+                    {confirmData["commission"]}
+                    {"Currently Free"}
                   </Text>
                   <View style={theme.separator} />
 
                   <Text style={[styles.confirmTitle]}>Final Amount</Text>
                   <Text style={[styles.confirmValue]}>
-                    {/* {confirmData["amount"]} */}
+                    {confirmData["amount"]}
                   </Text>
                   <View style={theme.separator} />
 
@@ -455,7 +491,7 @@ export default function CreateTransaction({ navigation }) {
                     Registered Seller's number
                   </Text>
                   <Text style={[styles.confirmValue]}>
-                    {/* {confirmData["cpty_phone"]} */}
+                    {confirmData["cpty_phone"]}
                   </Text>
                   <View style={theme.separator} />
 
@@ -463,7 +499,7 @@ export default function CreateTransaction({ navigation }) {
                     Registered Seller's Name
                   </Text>
                   <Text style={[styles.confirmValue]}>
-                    {/* {confirmData["cpty_company"]} */}
+                    {confirmData["cpty_company"]}
                   </Text>
                   <View style={theme.separator} />
 
@@ -627,19 +663,58 @@ export default function CreateTransaction({ navigation }) {
                         height: 21,
                       }}
                       mode="outlined"
-                      onPress={() => {
-                        Alert.alert("Error", arr_error, [
-                          {
-                            text: "Cancel",
-                            onPress: () => console.log("Cancel Pressed"),
-                            style: "cancel",
-                          },
-                          { text: "OK", onPress: () => console.log("OK Pressed") },
-                        ]);
-                      }}
+                      onPress={showDialog}
                     >
                       Agree
                     </PaperButton>
+                    <Portal>
+                      <Dialog visible={visible} onDismiss={hideDialog}>
+                        <Dialog.Title>Transaction Code</Dialog.Title>
+                        <Dialog.Content>
+                          <Paragraph>
+                            Share this link with the Seller. After the Seller
+                            confirms the transaction, you will be added to a
+                            Whatsapp Group.
+                          </Paragraph>
+                          <Paragraph>
+                            Transaction Link:
+                            <Text selectable={true}>
+                              https://secufer.in/api/transactions/shopping/?form_pk=
+                              {confirmData["form_pk"]}
+                            </Text>
+                          </Paragraph>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                          {/* <Button onPress={hideDialog}>Done</Button> */}
+                          <PaperButton
+                            style={{
+                              marginVertical: 10,
+                              paddingVertical: 5,
+                              height: 40,
+                              backgroundColor: "#04ACF3",
+                              borderRadius: 7,
+                            }}
+                            labelStyle={{
+                              fontFamily: "Roboto",
+                              fontStyle: "normal",
+                              fontWeight: 500,
+                              fontWeight: "bold",
+                              fontSize: 16,
+                              lineHeight: 15,
+                              // width: "100%",
+                              letterSpacing: 0.32,
+                              paddingHorizontal: 5,
+                              color: "white",
+                              height: 21,
+                            }}
+                            mode="outlined"
+                            onPress={hideDialog}
+                          >
+                            Copy
+                          </PaperButton>
+                        </Dialog.Actions>
+                      </Dialog>
+                    </Portal>
                   </View>
                 </View>
               </ScrollView>
