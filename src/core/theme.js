@@ -26,7 +26,7 @@ export const theme = {
     alignItems: "center",
     width: "100%",
     overflow: "hidden",
-    borderBottomColor: "rgba(109, 102, 102, 0.25)",
+    borderBottomColor: "#778899",
     borderBottomWidth: 4,
   },
   titleContainer: {

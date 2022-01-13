@@ -24,7 +24,7 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
-          initialRouteName="OnboardingScreen"
+          initialRouteName={"OnboardingScreen"}
           screenOptions={{
             headerShown: true,
             headerStyle: {
