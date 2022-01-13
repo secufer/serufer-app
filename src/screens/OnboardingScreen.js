@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-
+import * as SecureStore from "expo-secure-store";
+import save from "../functions/StoreUser";
 import Onboarding from "react-native-onboarding-swiper";
 
 const Dots = ({ selected }) => {
@@ -39,6 +40,19 @@ const Done = ({ ...props }) => (
 );
 
 const OnboardingScreen = ({ navigation }) => {
+  useEffect(() => {
+    checkFirstTimeUser();
+  }, []);
+  const checkFirstTimeUser = async () => {
+    const count = await SecureStore.getItemAsync("Count");
+    if (count == "true") {
+      console.log("true");
+      navigation.navigate("StartScreen");
+    } else {
+      console.log("false");
+      save("Count", "true");
+    }
+  };
   return (
     <Onboarding
       SkipButtonComponent={Skip}
@@ -48,7 +62,7 @@ const OnboardingScreen = ({ navigation }) => {
       onSkip={() =>
         navigation.reset({
           index: 0,
-          routes: [{ name: "Dashboard" }],
+          routes: [{ name: "StartScreen" }],
         })
       }
       onDone={() =>
@@ -59,22 +73,38 @@ const OnboardingScreen = ({ navigation }) => {
       }
       pages={[
         {
+          backgroundColor: "#1e81b0",
+          image: <Image source={require("../assets/secufer_img/Logo.png")} />,
+          title: "How Secufer Works",
+          subtitle: "Transaction is completed in 4 easy steps",
+        },
+        {
           backgroundColor: "#04ACF3",
           image: <Image source={require("../assets/onboarding-img1.png")} />,
-          title: "Connect to the World",
-          subtitle: "A New Way To Connect With The World",
+          title: "1. Connect to Secufer",
+          subtitle:
+            "The process begins with the Freelancer, who visits our website and signs up to fill out the contract, after which a unique link is generated which they must send to their fellow client.",
         },
         {
           backgroundColor: "#1ABC6E",
           image: <Image source={require("../assets/onboarding-img2.png")} />,
-          title: "Share Your Favorites",
-          subtitle: "Share Your Thoughts With Similar Kind of People",
+          title: "2. Share Link to the Cilent",
+          subtitle:
+            "Upon receiving the link from the Freelancer, the client will visit our website and sign up, after which they get an option to paste the URL obtained from the Freelancer to preview the contract. The client should then agree to the contract terms in order to proceed.",
         },
         {
           backgroundColor: "#04ACF3",
           image: <Image source={require("../assets/onboarding-img3.png")} />,
-          title: "Become The Star",
-          subtitle: "Let The Spot Light Capture You",
+          title: "3. Client can Join Transaction",
+          subtitle:
+            "Once the Client agrees over the contract both the parties are joined to a group where the payment link is provided through which the Client sends money to Secufer's hold account. The freelancer can now start working over the Client's Project.",
+        },
+        {
+          backgroundColor: "#04ACF3",
+          image: <Image source={require("../assets/onboarding-img4.png")} />,
+          title: "4. Secufer will Authenticate",
+          subtitle:
+            "Both parties will discuss their project and keep a communication record in the allotted group, and money will be released to the Freelancer once the Client confirms work completion.",
         },
       ]}
     />

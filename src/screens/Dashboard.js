@@ -14,7 +14,7 @@ export default function Dashboard({ navigation }) {
     <Tab.Navigator
       initialRouteName="MyTransaction"
       screenOptions={({ route }) => ({
-        tabBarStyle: { height: 81 },
+        tabBarStyle: { height: 81, backgroundColor: "rgb(242,242,242, 0.25)" },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -63,6 +63,7 @@ export default function Dashboard({ navigation }) {
         name="UserProfile"
         component={UserProfile}
         options={{ headerShown: false }}
+        
       />
     </Tab.Navigator>
   );

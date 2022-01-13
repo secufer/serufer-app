@@ -390,7 +390,7 @@ export default function JoinTransaction({ navigation }) {
                     navigation.navigate("CreateTransaction");
                   }}
                 >
-                  Join
+                  create
                 </Button>
               </View>
             )}

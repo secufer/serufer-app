@@ -16,6 +16,8 @@ export default function logout() {
         try {
           await SecureStore.deleteItemAsync("token");
           await SecureStore.deleteItemAsync("User");
+          
+          await SecureStore.deleteItemAsync("Count");
           RootNavigation.navigate("StartScreen");
         } catch (err) {
           console.log("OK Pressed" + " " + err);
