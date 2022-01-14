@@ -49,29 +49,42 @@ export default function UserProfile() {
           <Text style={[styles.confirmTitle]}>User Type</Text>
           {user["user_type"]?.map((paragraph) => (
             <Text key={paragraph} style={[styles.confirmValue]}>
+              {"🧑‍🦱 "}
               {paragraph}
             </Text>
           ))}
           <View style={styles.separator} />
 
           <Text style={[styles.confirmTitle]}>First Name</Text>
-          <Text style={[styles.confirmValue]}>{user["first_name"]}</Text>
+          <Text style={[styles.confirmValue]}>
+            {"👨‍💼 "}
+            {user["first_name"]}
+          </Text>
           <View style={styles.separator} />
 
           <Text style={[styles.confirmTitle]}>Last Name</Text>
-          <Text style={[styles.confirmValue]}>{user["last_name"]}</Text>
+          <Text style={[styles.confirmValue]}>
+            {"👨‍💼 "}
+            {user["last_name"]}
+          </Text>
           <View style={styles.separator} />
 
           <Text style={[styles.confirmTitle]}>Phone Number</Text>
-          <Text style={[styles.confirmValue]}>{user["phone_number"]}</Text>
+          <Text style={[styles.confirmValue]}>
+            {"📞 "}
+            {user["phone_number"]}
+          </Text>
           <View style={styles.separator} />
 
           <Text style={[styles.confirmTitle]}>Email</Text>
-          <Text style={[styles.confirmValue]}>{user["email"]}</Text>
+          <Text style={[styles.confirmValue]}>
+            {"📧 "}
+            {user["email"]}
+          </Text>
           <View style={styles.separator} />
           <View style={{ alignItems: "center" }}>
             <Button mode="contained" onPress={logout} style={{ marginTop: 24 }}>
-              Log-Out
+              ➡️ LogOut
             </Button>
           </View>
         </View>

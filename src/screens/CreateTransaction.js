@@ -164,21 +164,21 @@ export default function CreateTransaction({ navigation }) {
         { text: "OK", onPress: () => console.log("OK Pressed") },
       ]);
     }
-    if (!!data["cpty_phone"] === Array) {
+    if (data["cpty_phone"] && Array.isArray(data["cpty_phone"])) {
       arr_error = data["cpty_phone"];
       arr_error.map((ero) => {
         console.log(ero);
         setCpty_phone({ ...cpty_phone, error: ero });
       });
     }
-    if (!!data["cpty_company"] === Array) {
+    if (data["cpty_company"] && Array.isArray(data["cpty_company"])) {
       arr_error = data["cpty_company"];
       arr_error.map((ero) => {
         console.log(ero);
         setCpty_company({ ...cpty_company, error: ero });
       });
     }
-    if (!!data["amount"] === Array) {
+    if (data["amount"] && Array.isArray(data["amount"])) {
       arr_error = data["amount"];
       arr_error.map((ero) => {
         console.log(ero);
@@ -463,27 +463,34 @@ export default function CreateTransaction({ navigation }) {
                   }}
                 >
                   <Text style={[styles.confirmTitle]}>User Type</Text>
-                  <Text style={[styles.confirmValue]}>{user}</Text>
+                  <Text style={[styles.confirmValue]}>
+                    {"🧑‍🦱 "}
+                    {user}
+                  </Text>
                   <View style={theme.separator} />
 
                   <Text style={[styles.confirmTitle]}>
                     Product / Service Details
                   </Text>
                   <Text style={[styles.confirmValue]}>
+                    {"📄  "}
                     {confirmData["service_details"]}
                   </Text>
                   <View style={theme.separator} />
 
                   <Text style={[styles.confirmTitle]}>Commission</Text>
                   <Text style={[styles.confirmValue]}>
+                    {"💰 "}
                     {confirmData["commission"]}
-                    {"Currently Free"}
+                    {" --: Currently Free"}
                   </Text>
                   <View style={theme.separator} />
 
                   <Text style={[styles.confirmTitle]}>Final Amount</Text>
                   <Text style={[styles.confirmValue]}>
+                    {"💸 "}
                     {confirmData["amount"]}
+                    {" ₹ "}
                   </Text>
                   <View style={theme.separator} />
 
@@ -491,6 +498,7 @@ export default function CreateTransaction({ navigation }) {
                     Registered Seller's number
                   </Text>
                   <Text style={[styles.confirmValue]}>
+                    {"📞 "}
                     {confirmData["cpty_phone"]}
                   </Text>
                   <View style={theme.separator} />
@@ -499,7 +507,7 @@ export default function CreateTransaction({ navigation }) {
                     Registered Seller's Name
                   </Text>
                   <Text style={[styles.confirmValue]}>
-                    {confirmData["cpty_company"]}
+                    {"👨‍💼 "}{confirmData["cpty_company"]}
                   </Text>
                   <View style={theme.separator} />
 
