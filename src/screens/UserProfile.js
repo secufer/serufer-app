@@ -48,7 +48,9 @@ export default function UserProfile() {
         >
           <Text style={[styles.confirmTitle]}>User Type</Text>
           {user["user_type"]?.map((paragraph) => (
-            <Text style={[styles.confirmValue]}>{paragraph}</Text>
+            <Text key={paragraph} style={[styles.confirmValue]}>
+              {paragraph}
+            </Text>
           ))}
           <View style={styles.separator} />
 
