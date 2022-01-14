@@ -47,7 +47,7 @@ const OnboardingScreen = ({ navigation }) => {
     const count = await SecureStore.getItemAsync("Count");
     if (count == "true") {
       console.log("true");
-      // navigation.navigate("StartScreen");
+      navigation.navigate("StartScreen");
     } else {
       console.log("false");
       save("Count", "true");
