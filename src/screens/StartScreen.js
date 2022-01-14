@@ -1,6 +1,5 @@
 import React from "react";
-import Background from "../components/Background";
-import Logo from "../components/Logo";
+
 import Head from "../components/Head";
 import Button from "../components/Button";
 import { View } from "react-native";

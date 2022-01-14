@@ -185,7 +185,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </View>
   );
 }

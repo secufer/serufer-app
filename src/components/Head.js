@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "100%",
     fontSize: 36,
-    color: "#778899",
+    color: "#615B5B",
     fontWeight: "bold",
     fontFamily: "Roboto",
     fontStyle: "normal",
