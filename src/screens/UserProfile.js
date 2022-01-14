@@ -35,7 +35,7 @@ export default function UserProfile() {
       </View>
 
       <View style={theme.separator} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={{
             display: "flex",
@@ -46,42 +46,53 @@ export default function UserProfile() {
             borderRadius: 6,
           }}
         >
-          <Text style={[styles.confirmTitle]}>User Type</Text>
-          {user["user_type"]?.map((paragraph) => (
-            <Text key={paragraph} style={[styles.confirmValue]}>
-              {"🧑‍🦱 "}
-              {paragraph}
+          <View
+            style={{
+              borderLeftWidth: 5,
+              borderRightWidth: 5,
+              borderRadius: 20,
+              paddingHorizontal: 1,
+              marginHorizontal: 2,
+              borderColor: "#778899",
+            }}
+          >
+            <Text style={[styles.confirmTitle]}>User Type</Text>
+            {user["user_type"]?.map((paragraph) => (
+              <Text key={paragraph} style={[styles.confirmValue]}>
+                {"🧑‍🦱"}
+                {paragraph}
+              </Text>
+            ))}
+            <View style={styles.separator} />
+
+            <Text style={[styles.confirmTitle]}>First Name</Text>
+            <Text style={[styles.confirmValue]}>
+              {"👨‍💼 "}
+              {user["first_name"]}
             </Text>
-          ))}
-          <View style={styles.separator} />
+            <View style={styles.separator} />
 
-          <Text style={[styles.confirmTitle]}>First Name</Text>
-          <Text style={[styles.confirmValue]}>
-            {"👨‍💼 "}
-            {user["first_name"]}
-          </Text>
-          <View style={styles.separator} />
+            <Text style={[styles.confirmTitle]}>Last Name</Text>
+            <Text style={[styles.confirmValue]}>
+              {"👨‍💼 "}
+              {user["last_name"]}
+            </Text>
+            <View style={styles.separator} />
 
-          <Text style={[styles.confirmTitle]}>Last Name</Text>
-          <Text style={[styles.confirmValue]}>
-            {"👨‍💼 "}
-            {user["last_name"]}
-          </Text>
-          <View style={styles.separator} />
+            <Text style={[styles.confirmTitle]}>Phone Number</Text>
+            <Text style={[styles.confirmValue]}>
+              {"📞 "}
+              {user["phone_number"]}
+            </Text>
+            <View style={styles.separator} />
 
-          <Text style={[styles.confirmTitle]}>Phone Number</Text>
-          <Text style={[styles.confirmValue]}>
-            {"📞 "}
-            {user["phone_number"]}
-          </Text>
-          <View style={styles.separator} />
-
-          <Text style={[styles.confirmTitle]}>Email</Text>
-          <Text style={[styles.confirmValue]}>
-            {"📧 "}
-            {user["email"]}
-          </Text>
-          <View style={styles.separator} />
+            <Text style={[styles.confirmTitle]}>Email</Text>
+            <Text style={[styles.confirmValue]}>
+              {"📧 "}
+              {user["email"]}
+            </Text>
+            <View style={styles.separator} />
+          </View>
           <View style={{ alignItems: "center" }}>
             <Button mode="contained" onPress={logout} style={{ marginTop: 24 }}>
               ➡️ LogOut
@@ -102,9 +113,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   separator: {
-    marginBottom: 5,
+    marginBottom: 3,
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
     width: "98%",
     overflow: "hidden",
     borderBottomColor: "#778899",
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
   },
   headerContent: {
-    padding: 30,
+    padding: 20,
     alignItems: "center",
   },
   avatar: {

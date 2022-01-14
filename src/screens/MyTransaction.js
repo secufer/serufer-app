@@ -70,7 +70,7 @@ export default function MyTransaction() {
             flex: 1,
             flexDirection: "row",
             justifyContent: "flex-end",
-            alignContent: "center",
+            alignContent: "flex-end",
             alignItems: "center",
           }}
         >
