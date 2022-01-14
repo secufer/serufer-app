@@ -55,7 +55,6 @@ export default function RegisterScreen({ navigation }) {
     console.log(data);
 
     setLoading(!!data ? false : true);
-    
 
     if (!!data["non_field_errors"] == true) {
       arr_error = data["non_field_errors"];
@@ -90,6 +89,12 @@ export default function RegisterScreen({ navigation }) {
       arr_error.map((ero) => {
         console.log(ero);
         setPassword({ ...password, error: ero });
+      });
+    }
+    if (password.value != confirmPassword.value) {
+      setConfirmPassword({
+        ...confirmPassword,
+        error: "Please Enter same Pasword",
       });
     }
     if (!!data["token"] == true) {
@@ -221,7 +226,7 @@ export default function RegisterScreen({ navigation }) {
           }
           error={!!confirmPassword.error}
           errorText={confirmPassword.error}
-          secureTextEntry
+          secureTextEntry={secureTextEntry}
         />
         <View style={styles.checkboxContainer}>
           <CheckBox

@@ -73,34 +73,41 @@ const OnboardingScreen = ({ navigation }) => {
       }
       pages={[
         {
-          backgroundColor: "#1e81b0",
+          backgroundColor: "#1eb096",
+          image: <Image source={require("../assets/secufer_img/Logo.png")} />,
+          title: "What is Secufer?",
+          subtitle:
+            "Creating Trust In Your Transactions\n\nWhether it's buying or selling online products/services Secufer protects you from getting into frauds.",
+        },
+        {
+          backgroundColor: "#1ABC6E",
           image: <Image source={require("../assets/secufer_img/Logo.png")} />,
           title: "How Secufer Works",
           subtitle: "Transaction is completed in 4 easy steps",
         },
         {
-          backgroundColor: "#04ACF3",
+          backgroundColor: "#28e188",
           image: <Image source={require("../assets/onboarding-img1.png")} />,
           title: "1. Connect to Secufer",
           subtitle:
             "The process begins with the Freelancer, who visits our website and signs up to fill out the contract, after which a unique link is generated which they must send to their fellow client.",
         },
         {
-          backgroundColor: "#1ABC6E",
+          backgroundColor: "#04ACF3",
           image: <Image source={require("../assets/onboarding-img2.png")} />,
           title: "2. Share Link to the Cilent",
           subtitle:
             "Upon receiving the link from the Freelancer, the client will visit our website and sign up, after which they get an option to paste the URL obtained from the Freelancer to preview the contract. The client should then agree to the contract terms in order to proceed.",
         },
         {
-          backgroundColor: "#04ACF3",
+          backgroundColor: "#48c6fc",
           image: <Image source={require("../assets/onboarding-img3.png")} />,
           title: "3. Client can Join Transaction",
           subtitle:
             "Once the Client agrees over the contract both the parties are joined to a group where the payment link is provided through which the Client sends money to Secufer's hold account. The freelancer can now start working over the Client's Project.",
         },
         {
-          backgroundColor: "#04ACF3",
+          backgroundColor: "#04da43",
           image: <Image source={require("../assets/onboarding-img4.png")} />,
           title: "4. Secufer will Authenticate",
           subtitle:
