@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   ScrollView,
   Linking,
+  Alert,
 } from "react-native";
 import { Button as PaperButton } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
@@ -63,8 +64,21 @@ export default function JoinTransaction({ navigation }) {
       )
         .then((response) => response.json())
         .then((responseData) => {
-          setCofirmData(responseData);
-          console.log(responseData);
+          if (responseData[0] == "Transaction form not found") {
+            Alert.alert("Error", "Transaction form not found", [
+              {
+                text: "OK",
+                onPress: () => {
+                  setCofirmData(null);
+                  setform_pk({ value: "", error: "" });
+                  setLoading(false);
+                },
+              },
+            ]);
+          } else {
+            setCofirmData(responseData);
+            console.log(responseData);
+          }
           return responseData;
         })
         .catch((error) => console.warn(error));
