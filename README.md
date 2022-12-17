@@ -1,7 +1,7 @@
 <div align="center" >
   <img src="https://github.com/secufer/serufer-app/blob/main/src/assets/secufer_img/Logo.png" width="500" alt="logo"/>
   
-# [Secufer - Android app]https://secuferapp-landing.vercel.app/)
+# [Secufer - Android app](https://secuferapp-landing.vercel.app/)
   an Escrow service mobile application for freelancers and their clients.
 </div>
 
@@ -21,9 +21,10 @@ $ npm start
 - Connect Buyer & Seller on whatsapp
 - Profile customization
 - Authentication:
-  - User signup
+  - Client signup
   - User logout
-  - Demo login
+  - Freelancers signup
+  - Freelancers logout
 
 ## **Built with -**
 
@@ -37,6 +38,13 @@ $ npm start
 
 ## **Demo -**
 [Live](https://secuferapp-landing.vercel.app/)
+<div align="center" >
+
+
+https://user-images.githubusercontent.com/45693044/208238409-028443ef-ba4b-4717-994d-bff53725b766.mp4
+
+
+</div>
 
 ## **Officel Website**
 [Secufer.in](https://secufer.in/)
@@ -44,5 +52,3 @@ $ npm start
 ## **How to use?**
 Dowanload the apk from this link -:
 https://expo.dev/artifacts/f4128e56-2d0c-4b8d-b9f3-666eb8084713
-
-
