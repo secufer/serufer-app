@@ -1,23 +1,48 @@
-# Serufer-app
-Secufer App is designed for a purpose that there should be a carefree environment while online shopping or transacting with someone who you dont trust much.
+<div align="center" >
+  <img src="https://github.com/secufer/serufer-app/blob/main/src/assets/secufer_img/Logo.png" width="500" alt="logo"/>
+  
+# [Secufer - Android app]https://secuferapp-landing.vercel.app/)
+  an Escrow service mobile application for freelancers and their clients.
+</div>
 
-## Fetchers
-Authentication system, 
-Creating User Profile, 
-Creating Authenticated Transactions, 
-Creating Request Links, 
-Joining Transactions, 
-Connecting Buyer & Seller.
+## **How to install and run locally ?**
 
-## Tech Stack 
-React Native, 
-REST API, 
-WhatsApp Business API, 
-Figma UI, 
+```
+$ git clone https://github.com/Prathmesh-Dhatrak/friend-zone.git
+$ cd friend-zone
+$ npm install
+$ npm start
+```
 
-## Officel Website
+## **Features -**
+
+- Transactions create/accept links
+- Authenticate transactions
+- Connect Buyer & Seller on whatsapp
+- Profile customization
+- Authentication:
+  - User signup
+  - User logout
+  - Demo login
+
+## **Built with -**
+
+- React Native
+- React Navigation
+- Expo
+- Axios
+- React Native Reanimated
+- WhatsApp Business API
+
+
+## **Demo -**
+[Live](https://secuferapp-landing.vercel.app/)
+
+## **Officel Website**
 [Secufer.in](https://secufer.in/)
 
-## How to use?
+## **How to use?**
 Dowanload the apk from this link -:
 https://expo.dev/artifacts/f4128e56-2d0c-4b8d-b9f3-666eb8084713
+
+
